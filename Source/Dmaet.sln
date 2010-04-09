@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dmaet.Core", "Dmaet.Core\Dmaet.Core.csproj", "{8FB73709-9080-4ED6-81D2-6EADB35FBFE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dmaet.Console", "Dmaet.Console\Dmaet.Console.csproj", "{D704C250-68DA-49B2-BF11-4790257C92EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|Any CPU = Default|Any CPU
@@ -16,6 +18,12 @@ Global
 		{8FB73709-9080-4ED6-81D2-6EADB35FBFE9}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{8FB73709-9080-4ED6-81D2-6EADB35FBFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FB73709-9080-4ED6-81D2-6EADB35FBFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D704C250-68DA-49B2-BF11-4790257C92EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D704C250-68DA-49B2-BF11-4790257C92EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D704C250-68DA-49B2-BF11-4790257C92EC}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{D704C250-68DA-49B2-BF11-4790257C92EC}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{D704C250-68DA-49B2-BF11-4790257C92EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D704C250-68DA-49B2-BF11-4790257C92EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Dmaet.Core\Dmaet.Core.csproj
