@@ -38,7 +38,7 @@ namespace Dmaet.Core.Instances
         /// </summary>
         protected List<IAttribute> attributes = new List<IAttribute> ();
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected int classAttributeIndex;
 
@@ -55,6 +55,15 @@ namespace Dmaet.Core.Instances
         public int ClassAttributeIndex {
             get {
                 return this.classAttributeIndex;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ICollection<IAttribute> Attributes {
+            get {
+                return this.attributes;
             }
         }
     }

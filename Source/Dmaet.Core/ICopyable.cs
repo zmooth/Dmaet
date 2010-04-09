@@ -27,8 +27,18 @@ using System;
 
 namespace Dmaet.Core
 {
+    /// <summary>
+    ///     An interface to enable classes
+    ///     to create a deep copy of themselves.
+    /// </summary>
     public interface ICopyable<ClassType>
     {
+        /// <summary>
+        ///     Creates a deep copy of the class.
+        /// </summary>
+        /// <returns>
+        ///     A deep copy equal to this class.
+        /// </returns>
         ClassType Copy ();
     }
 }

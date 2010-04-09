@@ -39,19 +39,19 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private double lowerBound;
+        private double lowerBound = double.NegativeInfinity;
         /// <summary>
         ///
         /// </summary>
-        private double uppderBound;
+        private double upperBound = double.PositiveInfinity;
         /// <summary>
         ///
         /// </summary>
-        private bool lowerBoundIsOpen;
+        private bool lowerBoundIsOpen = true;
         /// <summary>
         ///
         /// </summary>
-        private bool upperBoundIsOpen;
+        private bool upperBoundIsOpen = true;
 
         /// <summary>
         ///
@@ -94,7 +94,7 @@ namespace Dmaet.Core.Attributes
         ///
         /// </summary>
         public double UpperBound {
-            get { return this.uppderBound; }
+            get { return this.upperBound; }
         }
 
         /// <summary>
@@ -105,28 +105,30 @@ namespace Dmaet.Core.Attributes
         }
 
         /// <summary>
-        ///
+        ///     Checks if the given value is inside the
+        ///     attribute's range.
         /// </summary>
         /// <param name="value">
-        /// A <see cref="System.Double"/>
+        ///     Value to check
         /// </param>
         /// <returns>
-        /// A <see cref="System.Boolean"/>
+        ///     True if the value is inside the attribute's
+        ///     range, False otherwise.
         /// </returns>
         public override bool IsValueInRange (double value)
         {
-            if (this.upperBoundIsOpen && value >= this.uppderBound)
+            if (this.upperBoundIsOpen && value >= this.upperBound)
                 return false;
             if (this.lowerBoundIsOpen && value <= this.lowerBound)
                 return false;
-            return value < this.uppderBound && value > this.lowerBound;
+            return value < this.upperBound && value > this.lowerBound;
         }
 
         /// <summary>
-        ///
+        ///     Creates a deep copy of the attribute.
         /// </summary>
         /// <returns>
-        /// A <see cref="IAttribute"/>
+        ///     A deep copy equal to this attribute.
         /// </returns>
         public override IAttribute Copy ()
         {

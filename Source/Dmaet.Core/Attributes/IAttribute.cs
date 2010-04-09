@@ -33,12 +33,12 @@ namespace Dmaet.Core.Attributes
     public abstract class IAttribute : ICopyable<IAttribute>, IEquatable<IAttribute>
     {
         /// <summary>
-        ///
+        ///     The attribute's name
         /// </summary>
         private readonly string name;
 
         /// <summary>
-        ///
+        ///     True if the attribute is the class attribute
         /// </summary>
         private readonly bool isClassAttribute;
 
@@ -46,7 +46,7 @@ namespace Dmaet.Core.Attributes
         ///
         /// </summary>
         /// <param name="name">
-        /// A <see cref="System.String"/>
+        ///     The attribute's name
         /// </param>
         public IAttribute (string name)
         {
@@ -58,10 +58,10 @@ namespace Dmaet.Core.Attributes
         ///
         /// </summary>
         /// <param name="name">
-        /// A <see cref="System.String"/>
+        ///     The attribute's name
         /// </param>
         /// <param name="isClassAttribute">
-        /// A <see cref="System.Boolean"/>
+        ///     Is it a class attribute
         /// </param>
         public IAttribute (string name, bool isClassAttribute)
         {
@@ -70,14 +70,14 @@ namespace Dmaet.Core.Attributes
         }
 
         /// <summary>
-        ///
+        ///     Gets the attribute's name
         /// </summary>
         public string Name {
             get { return this.name; }
         }
 
         /// <summary>
-        ///
+        ///     Checks if the attribute is a class attribute
         /// </summary>
         public bool IsClassAttribute {
             get { return this.isClassAttribute; }
@@ -89,21 +89,23 @@ namespace Dmaet.Core.Attributes
         public abstract double Value { get; }
 
         /// <summary>
-        /// 
+        ///     Checks if the given value is inside the
+        ///     attribute's range.
         /// </summary>
         /// <param name="value">
-        /// A <see cref="System.Double"/>
+        ///     Value to check
         /// </param>
         /// <returns>
-        /// A <see cref="System.Boolean"/>
+        ///     True if the value is inside the attribute's
+        ///     range, False otherwise.
         /// </returns>
         public abstract bool IsValueInRange (double value);
 
         /// <summary>
-        ///
+        ///     Creates a deep copy of the attribute.
         /// </summary>
         /// <returns>
-        /// A <see cref="IAttribute"/>
+        ///     A deep copy equal to this attribute.
         /// </returns>
         public abstract IAttribute Copy ();
 
