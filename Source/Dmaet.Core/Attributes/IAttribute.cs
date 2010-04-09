@@ -30,7 +30,7 @@ namespace Dmaet.Core.Attributes
     /// <summary>
     ///
     /// </summary>
-    public abstract class IAttribute
+    public abstract class IAttribute : ICopyable<IAttribute>
     {
         /// <summary>
         ///
@@ -79,6 +79,33 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
+        public bool IsClassAttribute {
+            get { return this.isClassAttribute; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         public abstract double Value { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns>
+        /// A <see cref="IAttribute"/>
+        /// </returns>
+        public abstract IAttribute Copy ();
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attribute">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        protected void FillCopy (IAttribute attribute)
+        {
+            attribute.name = this.name;
+            attribute.isClassAttribute = this.isClassAttribute;
+        }
     }
 }

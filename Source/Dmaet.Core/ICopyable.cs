@@ -25,52 +25,10 @@
 
 using System;
 
-namespace Dmaet.Core.Attributes
+namespace Dmaet.Core
 {
-    /// <summary>
-    ///
-    /// </summary>
-    public sealed class NumericAttribute : IAttribute
+    public interface ICopyable<ClassType>
     {
-        /// <summary>
-        ///
-        /// </summary>
-        private double value;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="name">
-        /// A <see cref="System.String"/>
-        /// </param>
-        /// <param name="value">
-        /// A <see cref="System.Double"/>
-        /// </param>
-        public NumericAttribute (string name, double value) : base(name)
-        {
-            this.value = value;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override double Value {
-            get {
-                return this.value;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>
-        /// A <see cref="IAttribute"/>
-        /// </returns>
-        public override IAttribute Copy ()
-        {
-            NumericAttribute copy = new NumericAttribute (this.Name, this.value);
-            base.FillCopy (copy);
-            return copy;
-        }
+        ClassType Copy ();
     }
 }
