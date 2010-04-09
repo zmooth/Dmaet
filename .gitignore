@@ -9,10 +9,13 @@
 *.cache
 *.bak
 *.swp
-/bin/*
-/Bin/*
+*.exe
+*.mdb
+*.userprefs
+Source/Dmaet.Core/bin/*
+Source/Dmaet.Console/bin/*
 Thumbs.db
 *.FileListAbsolute.txt
 *.Cache
-/tmp
+tmp/*
 build.force
