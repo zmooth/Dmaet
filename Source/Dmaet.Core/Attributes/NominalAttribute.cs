@@ -35,7 +35,7 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private Dictionary<string,int> nameMappings = new Dictionary<string, int> ();
+        private SortedList<string,int> nameMappings = new SortedList<string, int> ();
 
         /// <summary>
         ///
@@ -61,7 +61,7 @@ namespace Dmaet.Core.Attributes
         /// </summary>
         public override int NumberOfValues {
             get {
-                return base.NumberOfValues;
+                return this.nameMappings.Count;
             }
         }
 
@@ -103,7 +103,18 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override bool Equals (IAttribute other)
         {
-            throw new System.NotImplementedException ();
+            if (!(other is NominalAttribute))
+                return false;
+
+            foreach (string key in this.nameMappings.Keys)
+            {
+                if (!(other as NominalAttribute).nameMappings.ContainsKey (key))
+                    return false;
+                if ((other as NominalAttribute).nameMappings[key] != this.nameMappings[key])
+                    return false;
+            }
+
+            return base.AttributeEquals (other);
         }
     }
 }
