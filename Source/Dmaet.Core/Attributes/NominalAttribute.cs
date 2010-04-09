@@ -35,7 +35,7 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private SortedList<string,int> nameMappings = new SortedList<string, int> ();
+        private Dictionary<string,int> nameMappings = new Dictionary<string, int> ();
 
         /// <summary>
         ///
@@ -89,7 +89,11 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override IAttribute Copy ()
         {
-            throw new System.NotImplementedException ();
+            NominalAttribute copy = new NominalAttribute (this.Name);
+            base.FillCopy (copy);
+            copy.nameMappings = new Dictionary<string, int> (this.nameMappings);
+
+            return copy;
         }
 
         /// <summary>
