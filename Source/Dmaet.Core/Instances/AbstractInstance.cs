@@ -24,84 +24,38 @@
 /// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System.Collections.Generic;
+using Dmaet.Core.Attributes;
 
-namespace Dmaet.Core.Attributes
+namespace Dmaet.Core.Instances
 {
     /// <summary>
     ///
     /// </summary>
-    public class NominalAttribute : IAttribute
+    public class AbstractInstance : IInstance
     {
         /// <summary>
         ///
         /// </summary>
-        private Dictionary<string,int> nameMappings = new Dictionary<string, int> ();
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="name">
-        /// A <see cref="System.String"/>
-        /// </param>
-        public NominalAttribute (string name) : base(name)
-        {
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override double Value {
-            get {
-                throw new System.NotImplementedException ();
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override int NumberOfValues {
-            get {
-                return base.NumberOfValues;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="value">
-        /// A <see cref="System.Double"/>
-        /// </param>
-        /// <returns>
-        /// A <see cref="System.Boolean"/>
-        /// </returns>
-        public override bool IsValueInRange (double value)
-        {
-            return value >= 0.0 && value < this.nameMappings.Count;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns>
-        /// A <see cref="IAttribute"/>
-        /// </returns>
-        public override IAttribute Copy ()
-        {
-            throw new System.NotImplementedException ();
-        }
-
+        protected List<IAttribute> attributes = new List<IAttribute> ();
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="other">
-        /// A <see cref="IAttribute"/>
-        /// </param>
-        /// <returns>
-        /// A <see cref="System.Boolean"/>
-        /// </returns>
-        public override bool Equals (IAttribute other)
+        protected int classAttributeIndex;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public AbstractInstance ()
         {
-            throw new System.NotImplementedException ();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public int ClassAttributeIndex {
+            get {
+                return this.classAttributeIndex;
+            }
         }
     }
 }
