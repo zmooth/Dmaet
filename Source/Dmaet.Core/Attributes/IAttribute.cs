@@ -30,7 +30,7 @@ namespace Dmaet.Core.Attributes
     /// <summary>
     ///
     /// </summary>
-    public abstract class IAttribute : ICopyable<IAttribute>
+    public abstract class IAttribute : ICopyable<IAttribute>, IEquatable<IAttribute>
     {
         /// <summary>
         ///
@@ -89,6 +89,17 @@ namespace Dmaet.Core.Attributes
         public abstract double Value { get; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value">
+        /// A <see cref="System.Double"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Boolean"/>
+        /// </returns>
+        public abstract bool IsValueInRange (double value);
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns>
@@ -99,11 +110,43 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
+        /// <param name="other">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Boolean"/>
+        /// </returns>
+        public abstract bool Equals (IAttribute other);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public virtual int NumberOfValues {
+            get { return 0; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="attribute">
         /// A <see cref="IAttribute"/>
         /// </param>
         protected void FillCopy (IAttribute attribute)
         {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="other">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Boolean"/>
+        /// </returns>
+        protected bool AttributeEquals (IAttribute other)
+        {
+            return this.Name == other.Name && this.IsClassAttribute == other.IsClassAttribute;
         }
     }
 }

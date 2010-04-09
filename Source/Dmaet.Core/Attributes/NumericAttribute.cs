@@ -36,6 +36,22 @@ namespace Dmaet.Core.Attributes
         ///
         /// </summary>
         private double value;
+        /// <summary>
+        ///
+        /// </summary>
+        private double lowerBound;
+        /// <summary>
+        ///
+        /// </summary>
+        private double uppderBound;
+        /// <summary>
+        ///
+        /// </summary>
+        private bool lowerBoundIsOpen;
+        /// <summary>
+        ///
+        /// </summary>
+        private bool upperBoundIsOpen;
 
         /// <summary>
         ///
@@ -46,7 +62,7 @@ namespace Dmaet.Core.Attributes
         /// <param name="value">
         /// A <see cref="System.Double"/>
         /// </param>
-        public NumericAttribute (string name, double value) : this (name, value, false)
+        public NumericAttribute (string name, double value) : this(name, value, false)
         {
         }
 
@@ -62,19 +78,48 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NumericAttribute (string name, double value, bool isClassAttribute)
-            : base(name, isClassAttribute)
+        public NumericAttribute (string name, double value, bool isClassAttribute) : base(name, isClassAttribute)
         {
             this.value = value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double LowerBound {
+            get { return this.lowerBound; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public double UpperBound {
+            get { return this.uppderBound; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public override double Value {
-            get {
-                return this.value;
-            }
+            get { return this.value; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="value">
+        /// A <see cref="System.Double"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Boolean"/>
+        /// </returns>
+        public override bool IsValueInRange (double value)
+        {
+            if (this.upperBoundIsOpen && value >= this.uppderBound)
+                return false;
+            if (this.lowerBoundIsOpen && value <= this.lowerBound)
+                return false;
+            return value < this.uppderBound && value > this.lowerBound;
         }
 
         /// <summary>
@@ -88,6 +133,20 @@ namespace Dmaet.Core.Attributes
             NumericAttribute copy = new NumericAttribute (this.Name, this.value, this.IsClassAttribute);
             base.FillCopy (copy);
             return copy;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="other">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Boolean"/>
+        /// </returns>
+        public override bool Equals (IAttribute other)
+        {
+            return this.Value == other.Value && base.AttributeEquals (other);
         }
     }
 }
