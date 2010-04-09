@@ -46,7 +46,24 @@ namespace Dmaet.Core.Attributes
         /// <param name="value">
         /// A <see cref="System.Double"/>
         /// </param>
-        public NumericAttribute (string name, double value) : base(name)
+        public NumericAttribute (string name, double value) : this (name, value, false)
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="name">
+        /// A <see cref="System.String"/>
+        /// </param>
+        /// <param name="value">
+        /// A <see cref="System.Double"/>
+        /// </param>
+        /// <param name="isClassAttribute">
+        /// A <see cref="System.Boolean"/>
+        /// </param>
+        public NumericAttribute (string name, double value, bool isClassAttribute)
+            : base(name, isClassAttribute)
         {
             this.value = value;
         }
@@ -68,7 +85,7 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override IAttribute Copy ()
         {
-            NumericAttribute copy = new NumericAttribute (this.Name, this.value);
+            NumericAttribute copy = new NumericAttribute (this.Name, this.value, this.IsClassAttribute);
             base.FillCopy (copy);
             return copy;
         }

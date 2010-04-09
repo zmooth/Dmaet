@@ -35,12 +35,12 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private string name;
+        private readonly string name;
 
         /// <summary>
         ///
         /// </summary>
-        private bool isClassAttribute;
+        private readonly bool isClassAttribute;
 
         /// <summary>
         ///
@@ -104,8 +104,6 @@ namespace Dmaet.Core.Attributes
         /// </param>
         protected void FillCopy (IAttribute attribute)
         {
-            attribute.name = this.name;
-            attribute.isClassAttribute = this.isClassAttribute;
         }
     }
 }
