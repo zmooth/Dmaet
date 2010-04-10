@@ -23,26 +23,16 @@
 /// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 /// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-using System.Collections.Generic;
-using Dmaet.Core.Attributes;
+using System;
 
-namespace Dmaet.Core.Instances
+namespace Dmaet.Core
 {
-    public interface IInstance
+    public interface IUndoable
     {
-        int ClassAttributeIndex { get; }
-        ICollection<IAttribute> Attributes { get; }
-        /// <summary>
-        ///     Gets the class attribute
-        /// </summary>
-        IAttribute ClassAttribute { get; }
-        /// <summary>
-        ///     Returns an instance's class value as a floating-point number.
-        /// </summary>
-        double ClassValue { get; }
-        /// <summary>
-        ///     Gets the number of attributes
-        /// </summary>
-        int NumberOfAttributes { get; }
+        bool UndoEnabled { get; set; }
+        bool CanUndo { get; }
+        void ClearUndoHistory ();
+        void Undo ();
+        void AddUndoPoint ();
     }
 }

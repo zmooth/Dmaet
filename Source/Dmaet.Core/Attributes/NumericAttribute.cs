@@ -35,10 +35,6 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private double value;
-        /// <summary>
-        ///
-        /// </summary>
         private double lowerBound = double.NegativeInfinity;
         /// <summary>
         ///
@@ -62,7 +58,7 @@ namespace Dmaet.Core.Attributes
         /// <param name="value">
         /// A <see cref="System.Double"/>
         /// </param>
-        public NumericAttribute (string name, double value) : this(name, value, false)
+        public NumericAttribute (string name) : this(name, false)
         {
         }
 
@@ -78,10 +74,9 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NumericAttribute (string name, double value, bool isClassAttribute)
+        public NumericAttribute (string name, bool isClassAttribute)
             : base(name, isClassAttribute)
         {
-            this.value = value;
         }
 
         /// <summary>
@@ -96,13 +91,6 @@ namespace Dmaet.Core.Attributes
         /// </summary>
         public double UpperBound {
             get { return this.upperBound; }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override double Value {
-            get { return this.value; }
         }
 
         /// <summary>
@@ -133,7 +121,7 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override IAttribute Copy ()
         {
-            NumericAttribute copy = new NumericAttribute (this.Name, this.value, this.IsClassAttribute);
+            NumericAttribute copy = new NumericAttribute (this.Name, this.IsClassAttribute);
             base.FillCopy (copy);
             return copy;
         }
@@ -149,7 +137,7 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override bool Equals (IAttribute other)
         {
-            return this.Value == other.Value && base.AttributeEquals (other);
+            return base.AttributeEquals (other);
         }
     }
 }

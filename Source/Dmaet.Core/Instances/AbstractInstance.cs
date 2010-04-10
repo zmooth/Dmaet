@@ -40,7 +40,15 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
+        protected List<double> values = new List<double> ();
+        /// <summary>
+        ///
+        /// </summary>
         protected int classAttributeIndex;
+        /// <summary>
+        ///
+        /// </summary>
+        protected double weight;
 
         /// <summary>
         ///
@@ -53,18 +61,44 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         public int ClassAttributeIndex {
-            get {
-                return this.classAttributeIndex;
-            }
+            get { return this.classAttributeIndex; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public IAttribute ClassAttribute {
+            get { return this.attributes[this.classAttributeIndex]; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public double ClassValue {
+            get { return this.values[this.classAttributeIndex]; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public ICollection<IAttribute> Attributes {
-            get {
-                return this.attributes;
-            }
+            get { return this.attributes; }
         }
+
+        /// <summary>
+        ///     Gets the number of attributes
+        /// </summary>
+        public int NumberOfAttributes {
+            get { return this.attributes.Count; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double Weight {
+            get { return this.weight; }
+            set { this.weight = value; }
+        }
+        
     }
 }

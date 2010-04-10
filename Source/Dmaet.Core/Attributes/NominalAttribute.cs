@@ -50,15 +50,6 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        public override double Value {
-            get {
-                throw new System.NotImplementedException ();
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         public override int NumberOfValues {
             get {
                 return this.nameMappings.Count;

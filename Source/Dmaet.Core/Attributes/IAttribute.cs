@@ -84,11 +84,6 @@ namespace Dmaet.Core.Attributes
         }
 
         /// <summary>
-        ///
-        /// </summary>
-        public abstract double Value { get; }
-
-        /// <summary>
         ///     Checks if the given value is inside the
         ///     attribute's range.
         /// </summary>
