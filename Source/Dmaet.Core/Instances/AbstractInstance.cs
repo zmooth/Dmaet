@@ -93,7 +93,7 @@ namespace Dmaet.Core.Instances
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public double Weight {
             get { return this.weight; }
