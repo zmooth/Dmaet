@@ -36,11 +36,7 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
-        protected List<IAttribute> attributes = new List<IAttribute> ();
-        /// <summary>
-        ///
-        /// </summary>
-        protected List<double> values = new List<double> ();
+        protected AttributeValueMapping attributeMapping = new AttributeValueMapping ();
         /// <summary>
         ///
         /// </summary>
@@ -68,28 +64,28 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         public IAttribute ClassAttribute {
-            get { return this.attributes[this.classAttributeIndex]; }
+            get { return this.attributeMapping.Attributes[this.classAttributeIndex]; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public double ClassValue {
-            get { return this.values[this.classAttributeIndex]; }
+            get { return this.attributeMapping.Values[this.classAttributeIndex]; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public ICollection<IAttribute> Attributes {
-            get { return this.attributes; }
+            get { return this.attributeMapping.Attributes; }
         }
 
         /// <summary>
         ///     Gets the number of attributes
         /// </summary>
         public int NumberOfAttributes {
-            get { return this.attributes.Count; }
+            get { return this.attributeMapping.Count; }
         }
 
         /// <summary>
