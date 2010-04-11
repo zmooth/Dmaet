@@ -95,6 +95,5 @@ namespace Dmaet.Core.Instances
             get { return this.weight; }
             set { this.weight = value; }
         }
-        
     }
 }
