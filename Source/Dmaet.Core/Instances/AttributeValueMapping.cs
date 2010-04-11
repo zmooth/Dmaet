@@ -68,6 +68,16 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
+        /// <param name="mapping">
+        /// A <see cref="AttributeValueMapping"/>
+        /// </param>
+        public AttributeValueMapping (AttributeValueMapping mapping) : this (mapping.attributes, mapping.values)
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         public List<IAttribute> Attributes {
             get { return this.attributes; }
         }
