@@ -60,7 +60,8 @@ namespace Dmaet.Core.Instances
         /// </param>
         public AttributeValueMapping (List<IAttribute> attributes, List<double> values)
         {
-            this.attributes = new List<IAttribute> (attributes);
+            foreach (IAttribute attribute in attributes)
+                this.attributes.Add (attribute.Copy ());
             this.values = new List<double> (values);
         }
 
