@@ -7,7 +7,7 @@ namespace Dmaet.Core.Instances
     /// <summary>
     ///
     /// </summary>
-    public class AttributeValueMapping
+    public class AttributeValueMapping : ICopyable<AttributeValueMapping>
     {
         /// <summary>
         ///
@@ -17,6 +17,28 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         private List<double> values = new List<double> ();
+
+        /// <summary>
+        ///
+        /// </summary>
+        public AttributeValueMapping ()
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attributes">
+        /// A <see cref="List<IAttribute>"/>
+        /// </param>
+        /// <param name="values">
+        /// A <see cref="List<System.Double>"/>
+        /// </param>
+        public AttributeValueMapping (List<IAttribute> attributes, List<double> values)
+        {
+            this.attributes = new List<IAttribute> (attributes);
+            this.values = new List<double> (values);
+        }
 
         /// <summary>
         ///
@@ -148,6 +170,17 @@ namespace Dmaet.Core.Instances
                 if (attribute == this.attributes[i])
                     return i;
             throw new System.Exception ("Could not find attribute!");
+        }
+
+        /// <summary>
+        ///     Creates a deep copy of the class.
+        /// </summary>
+        /// <returns>
+        ///     A deep copy equal to this class.
+        /// </returns>
+        public AttributeValueMapping Copy ()
+        {
+            return new AttributeValueMapping (this.attributes, this.values);
         }
     }
 }

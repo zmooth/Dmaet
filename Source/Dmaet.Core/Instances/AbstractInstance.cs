@@ -95,5 +95,22 @@ namespace Dmaet.Core.Instances
             get { return this.weight; }
             set { this.weight = value; }
         }
+
+        /// <summary>
+        ///     Creates a deep copy of the class.
+        /// </summary>
+        /// <returns>
+        ///     A deep copy equal to this class.
+        /// </returns>
+        public IInstance Copy ()
+        {
+            AbstractInstance copy = new AbstractInstance ();
+
+            copy.attributeMapping = this.attributeMapping.Copy ();
+            copy.classAttributeIndex = this.classAttributeIndex;
+            copy.weight = this.weight;
+
+            return copy;
+        }
     }
 }

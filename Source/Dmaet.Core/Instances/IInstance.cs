@@ -28,7 +28,7 @@ using Dmaet.Core.Attributes;
 
 namespace Dmaet.Core.Instances
 {
-    public interface IInstance
+    public interface IInstance : ICopyable<IInstance>
     {
         int ClassAttributeIndex { get; }
         ICollection<IAttribute> Attributes { get; }
