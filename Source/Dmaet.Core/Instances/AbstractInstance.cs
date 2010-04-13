@@ -120,11 +120,11 @@ namespace Dmaet.Core.Instances
         public IInstance Copy ()
         {
             AbstractInstance copy = new AbstractInstance ();
-
+            
             copy.values = new List<double> (this.values);
             copy.instanceSet = this.instanceSet;
             copy.weight = this.weight;
-
+            
             return copy;
         }
     }

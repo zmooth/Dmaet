@@ -45,6 +45,10 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         private Dictionary<IAttribute, List<double>> attributeValues = new Dictionary<IAttribute, List<double>> ();
+        /// <summary>
+        ///
+        /// </summary>
+        private int classAttributeIndex = -1;
 
         /// <summary>
         ///
@@ -64,9 +68,7 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         public int ClassAttributeIndex {
-            get {
-                throw new System.NotImplementedException ();
-            }
+            get { return this.classAttributeIndex; }
         }
 
         /// <summary>
@@ -102,13 +104,13 @@ namespace Dmaet.Core.Instances
         public List<double> GetValuesForAttribute (IAttribute attribute)
         {
             List<double> result = new List<double> ();
-
+            
             foreach (IInstance instance in this.instances)
                 result.Add (instance.GetValueForAttribute (attribute));
-
+            
             if (!this.attributeValues.ContainsKey (attribute))
                 this.attributeValues[attribute] = result;
-
+            
             return result;
         }
     }

@@ -28,9 +28,18 @@ using Dmaet.Core.Attributes;
 
 namespace Dmaet.Core.Instances
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IInstance : ICopyable<IInstance>
     {
+        /// <summary>
+        ///
+        /// </summary>
         int ClassAttributeIndex { get; }
+        /// <summary>
+        ///
+        /// </summary>
         ICollection<IAttribute> Attributes { get; }
         /// <summary>
         ///     Gets the class attribute
@@ -45,7 +54,7 @@ namespace Dmaet.Core.Instances
         /// </summary>
         int NumberOfAttributes { get; }
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="attribute">
         /// A <see cref="IAttribute"/>
