@@ -43,7 +43,6 @@
     <Compile Include="Version.cs" />
     <Compile Include="IUndoable.cs" />
     <Compile Include="Instances\InstanceSet.cs" />
-    <Compile Include="Instances\AttributeValueMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />

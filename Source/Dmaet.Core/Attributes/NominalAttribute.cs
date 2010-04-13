@@ -35,7 +35,7 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private Dictionary<string,int> nameMappings = new Dictionary<string, int> ();
+        private Dictionary<string, int> nameMappings = new Dictionary<string, int> ();
 
         /// <summary>
         ///
@@ -51,9 +51,7 @@ namespace Dmaet.Core.Attributes
         ///
         /// </summary>
         public override int NumberOfValues {
-            get {
-                return this.nameMappings.Count;
-            }
+            get { return this.nameMappings.Count; }
         }
 
         /// <summary>
@@ -83,7 +81,7 @@ namespace Dmaet.Core.Attributes
             NominalAttribute copy = new NominalAttribute (this.Name);
             base.FillCopy (copy);
             copy.nameMappings = new Dictionary<string, int> (this.nameMappings);
-
+            
             return copy;
         }
 
@@ -100,7 +98,7 @@ namespace Dmaet.Core.Attributes
         {
             if (!(other is NominalAttribute))
                 return false;
-
+            
             foreach (string key in this.nameMappings.Keys)
             {
                 if (!(other as NominalAttribute).nameMappings.ContainsKey (key))
@@ -108,7 +106,7 @@ namespace Dmaet.Core.Attributes
                 if ((other as NominalAttribute).nameMappings[key] != this.nameMappings[key])
                     return false;
             }
-
+            
             return base.AttributeEquals (other);
         }
     }

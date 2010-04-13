@@ -24,6 +24,7 @@
 /// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System.Collections.Generic;
+using Dmaet.Core.Attributes;
 
 namespace Dmaet.Core.Instances
 {
@@ -36,6 +37,10 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         private List<IInstance> instances = new List<IInstance> ();
+        /// <summary>
+        ///
+        /// </summary>
+        private List<IAttribute> attributes = new List<IAttribute> ();
 
         /// <summary>
         ///
@@ -47,10 +52,24 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
+        public int NumberOfAttributes {
+            get { return this.attributes.Count; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         public int ClassAttributeIndex {
             get {
-                return instances[0].ClassAttributeIndex;
+                throw new System.NotImplementedException ();
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<IAttribute> Attributes {
+            get { return this.attributes; }
         }
     }
 }

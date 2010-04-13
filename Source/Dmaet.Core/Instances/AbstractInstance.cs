@@ -36,11 +36,11 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
-        protected AttributeValueMapping attributeMapping = new AttributeValueMapping ();
+        protected InstanceSet instanceSet;
         /// <summary>
         ///
         /// </summary>
-        protected int classAttributeIndex;
+        protected List<double> values;
         /// <summary>
         ///
         /// </summary>
@@ -57,35 +57,35 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         public int ClassAttributeIndex {
-            get { return this.classAttributeIndex; }
+            get { return this.instanceSet.ClassAttributeIndex; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public IAttribute ClassAttribute {
-            get { return this.attributeMapping.Attributes[this.classAttributeIndex]; }
+            get { return this.instanceSet.Attributes[ClassAttributeIndex]; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public double ClassValue {
-            get { return this.attributeMapping.Values[this.classAttributeIndex]; }
+            get { return this.values[ClassAttributeIndex]; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public ICollection<IAttribute> Attributes {
-            get { return this.attributeMapping.Attributes; }
+            get { return this.instanceSet.Attributes; }
         }
 
         /// <summary>
         ///     Gets the number of attributes
         /// </summary>
         public int NumberOfAttributes {
-            get { return this.attributeMapping.Count; }
+            get { return this.instanceSet.NumberOfAttributes; }
         }
 
         /// <summary>
@@ -106,8 +106,8 @@ namespace Dmaet.Core.Instances
         {
             AbstractInstance copy = new AbstractInstance ();
 
-            copy.attributeMapping = this.attributeMapping.Copy ();
-            copy.classAttributeIndex = this.classAttributeIndex;
+            copy.values = new List<double> (this.values);
+            copy.instanceSet = this.instanceSet;
             copy.weight = this.weight;
 
             return copy;
