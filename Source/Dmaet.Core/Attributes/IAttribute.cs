@@ -42,8 +42,6 @@ namespace Dmaet.Core.Attributes
         /// </summary>
         private readonly bool isClassAttribute;
 
-        protected int foo;
-
         /// <summary>
         ///
         /// </summary>

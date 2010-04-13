@@ -23,6 +23,7 @@
 /// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 /// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System;
 using System.Collections.Generic;
 
 namespace Dmaet.Core.Attributes
@@ -35,23 +36,40 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private Dictionary<string, int> nameMappings = new Dictionary<string, int> ();
+        private Dictionary<string, int> valueMappings = new Dictionary<string, int> ();
+
+        private List<string> values = new List<string> ();
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="name">
+        /// <param values="values">
         /// A <see cref="System.String"/>
         /// </param>
-        public NominalAttribute (string name) : base(name)
+        public NominalAttribute (string name, List<string> values) : this(name, values, false)
         {
+        }
+
+        public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base(name, isClassAttribute)
+        {
+            for (int i = 0; i < values.Count; ++i) {
+                if (valueMappings.ContainsKey (values[i]))
+                    throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + values[i] + ")", "values");
+                else
+                    valueMappings.Add (values[i], i);
+            }
+        }
+
+        public List<string> Values {
+            get { return this.values; }
         }
 
         /// <summary>
         ///
         /// </summary>
         public override int NumberOfValues {
-            get { return this.nameMappings.Count; }
+            get { return this.valueMappings.Count; }
         }
 
         /// <summary>
@@ -67,7 +85,7 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override bool IsValueInRange (double value)
         {
-            return value >= 0.0 && value < this.nameMappings.Count;
+            return value >= 0.0 && value < this.valueMappings.Count;
         }
 
         /// <summary>
@@ -78,9 +96,9 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override IAttribute Copy ()
         {
-            NominalAttribute copy = new NominalAttribute (this.Name);
+            NominalAttribute copy = new NominalAttribute (this.Name, this.Values);
             base.FillCopy (copy);
-            copy.nameMappings = new Dictionary<string, int> (this.nameMappings);
+            copy.valueMappings = new Dictionary<string, int> (this.valueMappings);
             
             return copy;
         }
@@ -99,11 +117,10 @@ namespace Dmaet.Core.Attributes
             if (!(other is NominalAttribute))
                 return false;
             
-            foreach (string key in this.nameMappings.Keys)
-            {
-                if (!(other as NominalAttribute).nameMappings.ContainsKey (key))
+            foreach (string key in this.valueMappings.Keys) {
+                if (!(other as NominalAttribute).valueMappings.ContainsKey (key))
                     return false;
-                if ((other as NominalAttribute).nameMappings[key] != this.nameMappings[key])
+                if ((other as NominalAttribute).valueMappings[key] != this.valueMappings[key])
                     return false;
             }
             

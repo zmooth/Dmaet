@@ -70,14 +70,16 @@ namespace Dmaet.Core.Instances
         public InstanceSet (List<IAttribute> attributes)
         {
             this.attributes = attributes;
-
+            
             int classIndex = 0;
             foreach (IAttribute attribute in this.attributes)
             {
                 this.nameToAttributeMapping[attribute.Name] = attribute;
+                
                 if (attribute.IsClassAttribute)
                     this.classAttributeIndex = classIndex;
-                ++this.classAttributeIndex;
+                else
+                    ++classIndex;
             }
         }
 
