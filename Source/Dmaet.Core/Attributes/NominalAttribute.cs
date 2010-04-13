@@ -116,6 +116,26 @@ namespace Dmaet.Core.Attributes
         public Dictionary<string, double>.KeyCollection Values {
             get { return this.valueMappings.Keys; }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value">
+        /// A <see cref="System.Double"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.String"/>
+        /// </returns>        
+        public string LookupValue (double value)
+        {
+            foreach (KeyValuePair<string, double> pair in this.valueMappings) {
+                if (pair.Value == value)
+                    return pair.Key;
+            }
+            
+            throw new Exception ("Can't find value!");
+        }
+
 
         /// <summary>
         ///
@@ -153,16 +173,6 @@ namespace Dmaet.Core.Attributes
             copy.valueMappings = new Dictionary<string, double> (this.valueMappings);
             
             return copy;
-        }
-
-        public string LookupValue (double value)
-        {
-            foreach (KeyValuePair<string, double> pair in this.valueMappings) {
-                if (pair.Value == value)
-                    return pair.Key;
-            }
-            
-            throw new Exception ("Can't find value!");
         }
 
         /// <summary>
