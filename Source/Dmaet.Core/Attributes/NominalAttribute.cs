@@ -36,9 +36,7 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private Dictionary<int, string> valueMappings = new Dictionary<int, string> ();
-
-        private List<string> values = new List<string> ();
+        private Dictionary<string, int> valueMappings = new Dictionary<string, int> ();
 
         /// <summary>
         ///
@@ -62,18 +60,16 @@ namespace Dmaet.Core.Attributes
         public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base(name, isClassAttribute)
         {
             for (int i = 0; i < values.Count; ++i) {
-                if (valueMappings.ContainsValue (values[i]))
+                if (valueMappings.ContainsKey (values[i]))
                     throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + values[i] + ")", "values");
-                else {
-                    valueMappings.Add (i, values[i]);
-                    values.Add (values[i]);
-                }
+                else
+                    valueMappings.Add (values[i], i);
             }
         }
 
-        public List<string> Values {
-            get { return this.values; }
-        }
+        //public KeyCollection Values {
+        //    get { return this.valueMappings.Keys; }
+        //}
 
         /// <summary>
         ///
@@ -100,7 +96,8 @@ namespace Dmaet.Core.Attributes
 
         public string LookUpValue (double value)
         {
-            return valueMappings[(int)value];
+            //TODO
+            return null;
         }
 
         /// <summary>
