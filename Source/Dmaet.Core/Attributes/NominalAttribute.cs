@@ -47,10 +47,10 @@ namespace Dmaet.Core.Attributes
         /// <param name="values">
         /// A <see cref="List<System.String>"/>
         /// </param>
-        public NominalAttribute (String name, List<string> values) : this (name, values, false)
+        public NominalAttribute (String name, List<string> values) : this(name, values, false)
         {
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -63,18 +63,17 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base (name, isClassAttribute)
+        public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base(name, isClassAttribute)
         {
             int index = 0;
-            foreach (string key in values)
-            {
+            foreach (string key in values) {
                 if (valueMappings.ContainsKey (key))
                     throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + key + ")", "values");
                 else
                     valueMappings.Add (key, index++);
-            }            
+            }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -84,7 +83,7 @@ namespace Dmaet.Core.Attributes
         /// <param name="values">
         /// A <see cref="Dictionary<System.String, System.Int32>.KeyCollection"/>
         /// </param>
-        public NominalAttribute (string name, Dictionary<string, double>.KeyCollection values) : this (name, values, false)
+        public NominalAttribute (string name, Dictionary<string, double>.KeyCollection values) : this(name, values, false)
         {
         }
 
@@ -100,11 +99,10 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NominalAttribute (string name, Dictionary<string, double>.KeyCollection values, bool isClassAttribute) : base (name, isClassAttribute)
+        public NominalAttribute (string name, Dictionary<string, double>.KeyCollection values, bool isClassAttribute) : base(name, isClassAttribute)
         {
             double index = 0;
-            foreach (string key in values)
-            {
+            foreach (string key in values) {
                 if (valueMappings.ContainsKey (key))
                     throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + key + ")", "values");
                 else
@@ -156,17 +154,17 @@ namespace Dmaet.Core.Attributes
             
             return copy;
         }
-        
+
         public string LookupValue (double value)
         {
-            foreach (KeyValuePair<string, double> pair in this.valueMappings)
-            {
+            foreach (KeyValuePair<string, double> pair in this.valueMappings) {
                 if (pair.Value == value)
                     return pair.Key;
             }
+            
             throw new Exception ("Can't find value!");
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
