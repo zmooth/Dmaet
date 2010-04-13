@@ -88,7 +88,7 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NominalAttribute (string name, Dictionary<string, int>.KeyCollection values, bool isClassAttribute) : base (name, isClassAttribute)
+        public NominalAttribute (string name, Dictionary<string, double>.KeyCollection values, bool isClassAttribute) : base (name, isClassAttribute)
         {
             int index = 0;
             foreach (string key in values)
@@ -103,7 +103,7 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         /// 
         /// </summary>
-        public Dictionary<string, int>.KeyCollection Values {
+        public Dictionary<string, double>.KeyCollection Values {
             get { return this.valueMappings.Keys; }
         }
 
@@ -140,15 +140,20 @@ namespace Dmaet.Core.Attributes
         {
             NominalAttribute copy = new NominalAttribute (this.Name, this.Values);
             base.FillCopy (copy);
-            copy.valueMappings = new Dictionary<string, int> (this.valueMappings);
+            copy.valueMappings = new Dictionary<string, double> (this.valueMappings);
             
             return copy;
         }
         
-        //public string LookupValue (double value)
-        //{
-            
-        //}
+        public string LookupValue (double value)
+        {
+            foreach (KeyValuePair<string, double> pair in this.valueMappings)
+            {
+                if (pair.Value == value)
+                    return pair.Key;
+            }
+            throw new Exception ("Can't find value!");
+        }
         
         /// <summary>
         /// 
