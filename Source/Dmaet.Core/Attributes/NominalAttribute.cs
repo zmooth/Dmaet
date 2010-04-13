@@ -51,6 +51,18 @@ namespace Dmaet.Core.Attributes
         {
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">
+        /// A <see cref="System.String"/>
+        /// </param>
+        /// <param name="values">
+        /// A <see cref="List<System.String>"/>
+        /// </param>
+        /// <param name="isClassAttribute">
+        /// A <see cref="System.Boolean"/>
+        /// </param>
         public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base (name, isClassAttribute)
         {
             int index = 0;
@@ -88,9 +100,9 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NominalAttribute (string name, Dictionary<string, int>.KeyCollection values, bool isClassAttribute) : base (name, isClassAttribute)
+        public NominalAttribute (string name, Dictionary<string, double>.KeyCollection values, bool isClassAttribute) : base (name, isClassAttribute)
         {
-            int index = 0;
+            double index = 0;
             foreach (string key in values)
             {
                 if (valueMappings.ContainsKey (key))
@@ -103,7 +115,7 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         /// 
         /// </summary>
-        public Dictionary<string, int>.KeyCollection Values {
+        public Dictionary<string, double>.KeyCollection Values {
             get { return this.valueMappings.Keys; }
         }
 
@@ -140,7 +152,7 @@ namespace Dmaet.Core.Attributes
         {
             NominalAttribute copy = new NominalAttribute (this.Name, this.Values);
             base.FillCopy (copy);
-            copy.valueMappings = new Dictionary<string, int> (this.valueMappings);
+            copy.valueMappings = new Dictionary<string, double> (this.valueMappings);
             
             return copy;
         }
