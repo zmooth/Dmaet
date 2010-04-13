@@ -41,6 +41,10 @@ namespace Dmaet.Core.Instances
         ///
         /// </summary>
         private List<IAttribute> attributes = new List<IAttribute> ();
+        /// <summary>
+        ///
+        /// </summary>
+        private Dictionary<IAttribute, List<double>> attributeValues = new Dictionary<IAttribute, List<double>> ();
 
         /// <summary>
         ///
@@ -70,6 +74,42 @@ namespace Dmaet.Core.Instances
         /// </summary>
         public List<IAttribute> Attributes {
             get { return this.attributes; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attribute">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Int32"/>
+        /// </returns>
+        public int GetIndexOfAttribute (IAttribute attribute)
+        {
+            return this.attributes.IndexOf (attribute);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attribute">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="List<System.Double>"/>
+        /// </returns>
+        public List<double> GetValuesForAttribute (IAttribute attribute)
+        {
+            List<double> result = new List<double> ();
+
+            foreach (IInstance instance in this.instances)
+                result.Add (instance.GetValueForAttribute (attribute));
+
+            if (!this.attributeValues.ContainsKey (attribute))
+                this.attributeValues[attribute] = result;
+
+            return result;
         }
     }
 }

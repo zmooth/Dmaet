@@ -97,6 +97,21 @@ namespace Dmaet.Core.Instances
         }
 
         /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attribute">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Double"/>
+        /// </returns>
+        public double GetValueForAttribute (IAttribute attribute)
+        {
+            int index = this.instanceSet.GetIndexOfAttribute (attribute);
+            return this.values[index];
+        }
+
+        /// <summary>
         ///     Creates a deep copy of the class.
         /// </summary>
         /// <returns>

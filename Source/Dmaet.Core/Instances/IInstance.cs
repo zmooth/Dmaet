@@ -44,5 +44,15 @@ namespace Dmaet.Core.Instances
         ///     Gets the number of attributes
         /// </summary>
         int NumberOfAttributes { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attribute">
+        /// A <see cref="IAttribute"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Double"/>
+        /// </returns>
+        double GetValueForAttribute (IAttribute attribute);
     }
 }
