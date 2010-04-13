@@ -157,10 +157,15 @@ namespace Dmaet.Core.Attributes
             return copy;
         }
         
-        //public string LookupValue (double value)
-        //{
-            
-        //}
+        public string LookupValue (double value)
+        {
+            foreach (KeyValuePair<string, double> pair in this.valueMappings)
+            {
+                if (pair.Value == value)
+                    return pair.Key;
+            }
+            throw new Exception ("Can't find value!");
+        }
         
         /// <summary>
         /// 
