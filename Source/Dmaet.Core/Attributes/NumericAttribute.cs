@@ -74,8 +74,7 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NumericAttribute (string name, bool isClassAttribute)
-            : base(name, isClassAttribute)
+        public NumericAttribute (string name, bool isClassAttribute) : base(name, isClassAttribute)
         {
         }
 

@@ -105,6 +105,16 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
+        /// <param name="index">
+        /// A <see cref="System.Int32"/>
+        /// </param>
+        public AbstractInstance this[int index] {
+            get { return this.instances[index] as AbstractInstance;}
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="instance">
         /// A <see cref="IInstance"/>
         /// </param>
@@ -150,7 +160,7 @@ namespace Dmaet.Core.Instances
         /// <returns>
         /// A <see cref="List<System.Double>"/>
         /// </returns>
-        public List<double> GetValuesForAttribute (IAttribute attribute)
+        public List<double> GetValuesOfAttribute (IAttribute attribute)
         {
             if (this.attributeValues.ContainsKey (attribute))
                 return this.attributeValues[attribute];
@@ -175,9 +185,9 @@ namespace Dmaet.Core.Instances
         /// <returns>
         /// A <see cref="List<System.Double>"/>
         /// </returns>
-        public List<double> GetValuesForAttribute (string attributeName)
+        public List<double> GetValuesOfAttribute (string attributeName)
         {
-            return GetValuesForAttribute (GetAttributeByName (attributeName));
+            return GetValuesOfAttribute (GetAttributeByName (attributeName));
         }
     }
 }

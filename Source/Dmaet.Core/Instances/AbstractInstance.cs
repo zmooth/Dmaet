@@ -104,6 +104,16 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
+        /// <param name="index">
+        /// A <see cref="System.Int32"/>
+        /// </param>
+        public double this[int index] {
+            get { return this.values[index]; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="attribute">
         /// A <see cref="IAttribute"/>
         /// </param>

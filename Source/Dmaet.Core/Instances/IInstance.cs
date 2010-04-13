@@ -63,5 +63,11 @@ namespace Dmaet.Core.Instances
         /// A <see cref="System.Double"/>
         /// </returns>
         double GetValueForAttribute (IAttribute attribute);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="index">
+        /// A <see cref="System.Int32"/>
+        /// </param>
     }
 }
