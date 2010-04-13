@@ -44,6 +44,10 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
+        private Dictionary<string, IAttribute> nameToAttributeMapping = new Dictionary<string, IAttribute> ();
+        /// <summary>
+        ///
+        /// </summary>
         private Dictionary<IAttribute, List<double>> attributeValues = new Dictionary<IAttribute, List<double>> ();
         /// <summary>
         ///
@@ -55,6 +59,26 @@ namespace Dmaet.Core.Instances
         /// </summary>
         public InstanceSet ()
         {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attributes">
+        /// A <see cref="List<IAttribute>"/>
+        /// </param>
+        public InstanceSet (List<IAttribute> attributes)
+        {
+            this.attributes = attributes;
+
+            int classIndex = 0;
+            foreach (IAttribute attribute in this.attributes)
+            {
+                this.nameToAttributeMapping[attribute.Name] = attribute;
+                if (attribute.IsClassAttribute)
+                    this.classAttributeIndex = classIndex;
+                ++this.classAttributeIndex;
+            }
         }
 
         /// <summary>
@@ -76,6 +100,31 @@ namespace Dmaet.Core.Instances
         /// </summary>
         public List<IAttribute> Attributes {
             get { return this.attributes; }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="instance">
+        /// A <see cref="IInstance"/>
+        /// </param>
+        public void AddInstance (IInstance instance)
+        {
+            this.instances.Add (instance);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attributeName">
+        /// A <see cref="System.String"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="IAttribute"/>
+        /// </returns>
+        public IAttribute GetAttributeByName (string attributeName)
+        {
+            return this.nameToAttributeMapping[attributeName];
         }
 
         /// <summary>
@@ -103,6 +152,9 @@ namespace Dmaet.Core.Instances
         /// </returns>
         public List<double> GetValuesForAttribute (IAttribute attribute)
         {
+            if (this.attributeValues.ContainsKey (attribute))
+                return this.attributeValues[attribute];
+
             List<double> result = new List<double> ();
             
             foreach (IInstance instance in this.instances)
@@ -112,6 +164,20 @@ namespace Dmaet.Core.Instances
                 this.attributeValues[attribute] = result;
             
             return result;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="attributeName">
+        /// A <see cref="System.String"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="List<System.Double>"/>
+        /// </returns>
+        public List<double> GetValuesForAttribute (string attributeName)
+        {
+            return GetValuesForAttribute (GetAttributeByName (attributeName));
         }
     }
 }

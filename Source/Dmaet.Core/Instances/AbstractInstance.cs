@@ -49,8 +49,13 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
-        public AbstractInstance ()
+        public AbstractInstance (InstanceSet instanceSet)
         {
+            this.instanceSet = instanceSet;
+            this.values = new List<double> (this.instanceSet.NumberOfAttributes);
+
+            for (int i = 0; i < this.instanceSet.NumberOfAttributes; ++i)
+                this.values.Add (0.0);
         }
 
         /// <summary>
@@ -119,10 +124,9 @@ namespace Dmaet.Core.Instances
         /// </returns>
         public IInstance Copy ()
         {
-            AbstractInstance copy = new AbstractInstance ();
+            AbstractInstance copy = new AbstractInstance (this.instanceSet);
             
             copy.values = new List<double> (this.values);
-            copy.instanceSet = this.instanceSet;
             copy.weight = this.weight;
             
             return copy;
