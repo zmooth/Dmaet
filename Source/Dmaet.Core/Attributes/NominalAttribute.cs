@@ -36,7 +36,7 @@ namespace Dmaet.Core.Attributes
         /// <summary>
         ///
         /// </summary>
-        private Dictionary<string, int> valueMappings = new Dictionary<string, int> ();
+        private Dictionary<int, string> valueMappings = new Dictionary<int, string> ();
 
         private List<string> values = new List<string> ();
 
@@ -51,13 +51,23 @@ namespace Dmaet.Core.Attributes
         {
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="name">
+        /// <param name="values">
+        /// <param name="isClassAttribute">
+        /// A <see cref="System.String"/>
+        /// </param>
         public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base(name, isClassAttribute)
         {
             for (int i = 0; i < values.Count; ++i) {
-                if (valueMappings.ContainsKey (values[i]))
+                if (valueMappings.ContainsValue (values[i]))
                     throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + values[i] + ")", "values");
-                else
-                    valueMappings.Add (values[i], i);
+                else {
+                    valueMappings.Add (i, values[i]);
+                    values.Add (values[i]);
+                }
             }
         }
 
@@ -88,6 +98,11 @@ namespace Dmaet.Core.Attributes
             return value >= 0.0 && value < this.valueMappings.Count;
         }
 
+        public string LookUpValue (double value)
+        {
+            return valueMappings[(int)value];
+        }
+
         /// <summary>
         ///     Creates a deep copy of the attribute.
         /// </summary>
@@ -98,7 +113,7 @@ namespace Dmaet.Core.Attributes
         {
             NominalAttribute copy = new NominalAttribute (this.Name, this.Values);
             base.FillCopy (copy);
-            copy.valueMappings = new Dictionary<string, int> (this.valueMappings);
+            copy.valueMappings = new Dictionary<int, string> (this.valueMappings);
             
             return copy;
         }
@@ -117,7 +132,7 @@ namespace Dmaet.Core.Attributes
             if (!(other is NominalAttribute))
                 return false;
             
-            foreach (string key in this.valueMappings.Keys) {
+            foreach (int key in this.valueMappings.Keys) {
                 if (!(other as NominalAttribute).valueMappings.ContainsKey (key))
                     return false;
                 if ((other as NominalAttribute).valueMappings[key] != this.valueMappings[key])

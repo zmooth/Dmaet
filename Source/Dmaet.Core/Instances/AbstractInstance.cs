@@ -53,7 +53,7 @@ namespace Dmaet.Core.Instances
         {
             this.instanceSet = instanceSet;
             this.values = new List<double> (this.instanceSet.NumberOfAttributes);
-
+            
             for (int i = 0; i < this.instanceSet.NumberOfAttributes; ++i)
                 this.values.Add (0.0);
         }
@@ -82,7 +82,7 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
-        public ICollection<IAttribute> Attributes {
+        public List<IAttribute> Attributes {
             get { return this.instanceSet.Attributes; }
         }
 
@@ -120,7 +120,7 @@ namespace Dmaet.Core.Instances
         /// <returns>
         /// A <see cref="System.Double"/>
         /// </returns>
-        public double GetValueForAttribute (IAttribute attribute)
+        public double GetValueOfAttribute (IAttribute attribute)
         {
             int index = this.instanceSet.GetIndexOfAttribute (attribute);
             return this.values[index];

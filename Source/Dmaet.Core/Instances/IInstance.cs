@@ -40,7 +40,7 @@ namespace Dmaet.Core.Instances
         /// <summary>
         ///
         /// </summary>
-        ICollection<IAttribute> Attributes { get; }
+        List<IAttribute> Attributes { get; }
         /// <summary>
         ///     Gets the class attribute
         /// </summary>
@@ -62,7 +62,7 @@ namespace Dmaet.Core.Instances
         /// <returns>
         /// A <see cref="System.Double"/>
         /// </returns>
-        double GetValueForAttribute (IAttribute attribute);
+        double GetValueOfAttribute (IAttribute attribute);
         /// <summary>
         ///
         /// </summary>

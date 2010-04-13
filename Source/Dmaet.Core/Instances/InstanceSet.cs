@@ -72,8 +72,7 @@ namespace Dmaet.Core.Instances
             this.attributes = attributes;
             
             int classIndex = 0;
-            foreach (IAttribute attribute in this.attributes)
-            {
+            foreach (IAttribute attribute in this.attributes) {
                 this.nameToAttributeMapping[attribute.Name] = attribute;
                 
                 if (attribute.IsClassAttribute)
@@ -111,7 +110,7 @@ namespace Dmaet.Core.Instances
         /// A <see cref="System.Int32"/>
         /// </param>
         public AbstractInstance this[int index] {
-            get { return this.instances[index] as AbstractInstance;}
+            get { return this.instances[index] as AbstractInstance; }
         }
 
         /// <summary>
@@ -166,11 +165,11 @@ namespace Dmaet.Core.Instances
         {
             if (this.attributeValues.ContainsKey (attribute))
                 return this.attributeValues[attribute];
-
+            
             List<double> result = new List<double> ();
             
             foreach (IInstance instance in this.instances)
-                result.Add (instance.GetValueForAttribute (attribute));
+                result.Add (instance.GetValueOfAttribute (attribute));
             
             if (!this.attributeValues.ContainsKey (attribute))
                 this.attributeValues[attribute] = result;
