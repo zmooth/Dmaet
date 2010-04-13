@@ -141,7 +141,7 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override IAttribute Copy ()
         {
-            NominalAttribute copy = new NominalAttribute (this.Name, this.Values);
+            StringAttribute copy = new StringAttribute (this.Name, this.valueMappings.Keys, this.IsClassAttribute);
             base.FillCopy (copy);
             copy.valueMappings = new Dictionary<string, double> (this.valueMappings);
             
@@ -159,13 +159,13 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override bool Equals (IAttribute other)
         {
-            if (!(other is NominalAttribute))
+            if (!(other is StringAttribute))
                 return false;
             
             foreach (string key in this.valueMappings.Keys) {
-                if (!(other as NominalAttribute).valueMappings.ContainsKey (key))
+                if (!(other as StringAttribute).valueMappings.ContainsKey (key))
                     return false;
-                if ((other as NominalAttribute).valueMappings[key] != this.valueMappings[key])
+                if ((other as StringAttribute).valueMappings[key] != this.valueMappings[key])
                     return false;
             }
             
