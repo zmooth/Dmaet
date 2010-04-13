@@ -45,7 +45,7 @@ namespace Dmaet.Core.Attributes
         /// <param values="values">
         /// A <see cref="System.String"/>
         /// </param>
-        public NominalAttribute (string name, List<string> values) : this(name, values, false)
+        public NominalAttribute (string name, Dictionary<string, int>.KeyCollection values) : this(name, values, false)
         {
         }
 
@@ -57,19 +57,21 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.String"/>
         /// </param>
-        public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base(name, isClassAttribute)
+        public NominalAttribute (string name, Dictionary<string, int>.KeyCollection values, bool isClassAttribute) : base(name, isClassAttribute)
         {
-            for (int i = 0; i < values.Count; ++i) {
-                if (valueMappings.ContainsKey (values[i]))
-                    throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + values[i] + ")", "values");
+            int index = 0;
+            foreach (string key in values)
+            {
+                if (valueMappings.ContainsKey (key))
+                    throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + key + ")", "values");
                 else
-                    valueMappings.Add (values[i], i);
+                    valueMappings.Add (key, index++);
             }
         }
 
-        //public KeyCollection Values {
-        //    get { return this.valueMappings.Keys; }
-        //}
+        public Dictionary<string, int>.KeyCollection Values {
+            get { return this.valueMappings.Keys; }
+        }
 
         /// <summary>
         ///
@@ -110,7 +112,7 @@ namespace Dmaet.Core.Attributes
         {
             NominalAttribute copy = new NominalAttribute (this.Name, this.Values);
             base.FillCopy (copy);
-            copy.valueMappings = new Dictionary<int, string> (this.valueMappings);
+            copy.valueMappings = new Dictionary<string, int> (this.valueMappings);
             
             return copy;
         }
@@ -129,7 +131,7 @@ namespace Dmaet.Core.Attributes
             if (!(other is NominalAttribute))
                 return false;
             
-            foreach (int key in this.valueMappings.Keys) {
+            foreach (string key in this.valueMappings.Keys) {
                 if (!(other as NominalAttribute).valueMappings.ContainsKey (key))
                     return false;
                 if ((other as NominalAttribute).valueMappings[key] != this.valueMappings[key])
