@@ -43,6 +43,7 @@
     <Compile Include="Version.cs" />
     <Compile Include="IUndoable.cs" />
     <Compile Include="Instances\InstanceSet.cs" />
+    <Compile Include="Attributes\StringAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />

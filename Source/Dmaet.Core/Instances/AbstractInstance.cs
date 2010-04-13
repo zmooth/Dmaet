@@ -31,7 +31,7 @@ namespace Dmaet.Core.Instances
     /// <summary>
     ///
     /// </summary>
-    public abstract class AbstractInstance : IInstance
+    public class AbstractInstance : IInstance
     {
         /// <summary>
         ///
@@ -51,7 +51,7 @@ namespace Dmaet.Core.Instances
         /// </summary>
         public AbstractInstance (InstanceSet parent)
         {
-            this.instanceSet = instanceSet;
+            this.instanceSet = parent;
             this.values = new List<double> (this.instanceSet.NumberOfAttributes);
             
             for (int i = 0; i < this.instanceSet.NumberOfAttributes; ++i)

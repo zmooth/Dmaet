@@ -31,7 +31,7 @@ namespace Dmaet.Core.Attributes
     /// <summary>
     ///
     /// </summary>
-    public class NominalAttribute : IAttribute
+    public class StringAttribute : IAttribute
     {
         /// <summary>
         ///
@@ -47,7 +47,7 @@ namespace Dmaet.Core.Attributes
         /// <param name="values">
         /// A <see cref="List<System.String>"/>
         /// </param>
-        public NominalAttribute (String name, List<string> values) : this(name, values, false)
+        public StringAttribute (String name) : this(name, false)
         {
         }
 
@@ -63,15 +63,8 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        public NominalAttribute (string name, List<string> values, bool isClassAttribute) : base(name, isClassAttribute)
+        public StringAttribute (string name, bool isClassAttribute) : base(name, isClassAttribute)
         {
-            int index = 0;
-            foreach (string key in values) {
-                if (valueMappings.ContainsKey (key))
-                    throw new ArgumentException ("A nominal attribute mustn't have duplicate values (" + name + ", " + key + ")", "values");
-                else
-                    valueMappings.Add (key, index++);
-            }
         }
 
         /// <summary>
@@ -86,7 +79,7 @@ namespace Dmaet.Core.Attributes
         /// <param name="isClassAttribute">
         /// A <see cref="System.Boolean"/>
         /// </param>
-        private NominalAttribute (string name, Dictionary<string, double>.KeyCollection values, bool isClassAttribute) : base(name, isClassAttribute)
+        private StringAttribute (string name, Dictionary<string, double>.KeyCollection values, bool isClassAttribute) : base(name, isClassAttribute)
         {
             double index = 0;
             foreach (string key in values) {
@@ -97,13 +90,6 @@ namespace Dmaet.Core.Attributes
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Dictionary<string, double>.KeyCollection Values {
-            get { return this.valueMappings.Keys; }
-        }
-        
         /// <summary>
         /// 
         /// </summary>
@@ -155,7 +141,7 @@ namespace Dmaet.Core.Attributes
         /// </returns>
         public override IAttribute Copy ()
         {
-            NominalAttribute copy = new NominalAttribute (this.Name, this.Values, this.IsClassAttribute);
+            NominalAttribute copy = new NominalAttribute (this.Name, this.Values);
             base.FillCopy (copy);
             copy.valueMappings = new Dictionary<string, double> (this.valueMappings);
             
